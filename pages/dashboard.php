@@ -14,8 +14,8 @@ $rooms_count = $rooms_result->fetch_assoc()['total'];
 $occupied_result = $conn->query("SELECT COUNT(*) as total FROM m_room WHERE status='Occupied'");
 $occupied_count = $occupied_result->fetch_assoc()['total'];
 
-$vacant_result = $conn->query("SELECT COUNT(*) as total FROM m_room WHERE status='Vacant'");
-$vacant_count = $vacant_result->fetch_assoc()['total'];
+$available_result = $conn->query("SELECT COUNT(*) as total FROM m_room WHERE status='Available'");
+$available_count = $available_result->fetch_assoc()['total'];
 
 // Get recent tenants
 $recent_tenants = $conn->query("SELECT * FROM m_tenant LIMIT 5");
@@ -66,7 +66,7 @@ $recent_rooms = $conn->query("SELECT * FROM m_room LIMIT 5");
         </div>
 
         <div class="stat-card">
-            <div class="stat-icon vacant-icon">
+            <div class="stat-icon available-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
                     <path d="M21 15v6h-6"></path>
@@ -75,8 +75,8 @@ $recent_rooms = $conn->query("SELECT * FROM m_room LIMIT 5");
                 </svg>
             </div>
             <div class="stat-content">
-                <h3>Vacant</h3>
-                <p class="stat-number"><?php echo $vacant_count; ?></p>
+                <h3>Available</h3>
+                <p class="stat-number"><?php echo $available_count; ?></p>
             </div>
         </div>
     </div>

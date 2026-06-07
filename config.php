@@ -17,5 +17,5 @@ if ($conn->connect_error) {
 $conn->set_charset("utf8mb4");
 
 // Base URL
-define('BASE_URL', 'http://localhost/');
+define('BASE_URL', 'http://localhost:8000/');
 ?>
