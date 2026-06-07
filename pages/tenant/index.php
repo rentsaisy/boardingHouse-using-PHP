@@ -66,7 +66,7 @@ $result = $conn->query("
 </div>
 
 <div class="card">
-    <table class="data-table">
+    <table class="data-table" id="tenantTable">
         <thead>
             <tr>
                 <th>ID</th>
@@ -97,7 +97,6 @@ $result = $conn->query("
             <?php endwhile; ?>
         </tbody>
     </table>
-
     
     <!-- PAGINATION -->
 
@@ -154,5 +153,38 @@ $result = $conn->query("
 
     </div>
 </div>
+
+<script>
+
+const searchInput =
+document.getElementById("searchInput");
+
+searchInput.addEventListener("keyup", function() {
+
+    let filter =
+    this.value.toLowerCase();
+
+    let rows =
+    document.querySelectorAll(
+        "#tenantTable tbody tr"
+    );
+
+    rows.forEach(row => {
+
+        let text =
+        row.innerText.toLowerCase();
+
+        if(text.includes(filter)){
+            row.style.display = "";
+        }
+        else{
+            row.style.display = "none";
+        }
+
+    });
+
+});
+
+</script>
 
 <?php include __DIR__ . '/../../includes/footer.php'; ?>
