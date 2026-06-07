@@ -32,7 +32,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
 
         <div class="sidebar-menu">
             
-            <a href="<?php echo $base_path; ?>dashboard.php" class="menu-item">
+            <a href="<?php echo $base_path; ?>pages/dashboard.php" class="menu-item">
                 <img
                 src="<?php echo $base_path; ?>public/dashboard.png"
                 class="sidebar-icon">
