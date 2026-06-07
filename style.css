@@ -211,7 +211,7 @@ body{
     background:#6cc070;
 }
 
-.vacant-icon{
+.available-icon{
     background:#87ceeb;
 }
 
@@ -226,12 +226,52 @@ body{
     margin-top:5px;
 }
 
-/* DASHBOARD GRID */
+/* WELCOME CARD */
 
-.dashboard-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
+.welcome-card{
+    width:100%;
+
+    padding:50px 40px;
+
+    text-align:center;
+
+    background:white;
+
+    border-radius:24px;
+
+    box-shadow:0 6px 20px rgba(0,0,0,0.06);
+}
+
+/* TITLE */
+
+.welcome-card h1{
+    font-size:20px;
+
+    color:#111827;
+
+    margin-bottom:10px;
+
+    font-weight:700;
+}
+
+/* IMAGE */
+
+.welcome-img{
+    width:200px;
+
+    image-rendering:pixelated;
+
+    margin-bottom:20px;
+}
+
+/* DESCRIPTION */
+
+.welcome-card p{
+    font-size:18px;
+
+    color:#4b5563;
+
+    line-height:1.8;
 }
 
 /* PAGE HEADER */
