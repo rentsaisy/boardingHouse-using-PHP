@@ -12,17 +12,57 @@ if(isset($_GET['delete'])) {
     exit;
 }
 
-// Get all tenants
-$result = $conn->query("SELECT * FROM m_tenant ORDER BY tenant_id DESC");
+// PAGINATION
+
+$limit = 5;
+
+$page = isset($_GET['page'])
+    ? (int)$_GET['page']
+    : 1;
+
+$start = ($page - 1) * $limit;
+
+
+// TOTAL DATA
+
+$total_result =
+$conn->query("
+    SELECT COUNT(*) as total
+    FROM m_tenant
+");
+
+$total_rows =
+$total_result->fetch_assoc()['total'];
+
+$total_pages =
+ceil($total_rows / $limit);
+
+// GET ROOM DATA
+
+$result = $conn->query("
+    SELECT *
+    FROM m_tenant
+    ORDER BY tenant_id ASC
+    LIMIT $start, $limit
+");
 ?>
+
 
 <div class="page-header">
     <div class="header-content">
-        <p class="breadcrumb">Home / <strong>Tenants</strong></p>
+        <h1 class="breadcrumb"><strong>Tenants</strong></h1>
     </div>
+
     <a href="add.php" class="btn btn-primary">
         Add Tenant
     </a>
+</div>
+
+<div class="search-box">
+    <input
+    type="text"
+    id="searchInput"
+    placeholder="Search room...">
 </div>
 
 <div class="card">
@@ -57,6 +97,62 @@ $result = $conn->query("SELECT * FROM m_tenant ORDER BY tenant_id DESC");
             <?php endwhile; ?>
         </tbody>
     </table>
+
+    
+    <!-- PAGINATION -->
+
+    <div class="pagination">
+
+        <!-- PREVIOUS -->
+
+        <?php if($page > 1): ?>
+
+            <a
+            href="?page=<?php echo $page - 1; ?>"
+            class="pagination-btn pagination-prev">
+
+                ← Previous
+
+            </a>
+
+        <?php else: ?>
+
+            <span class="pagination-btn disabled">
+                ← Previous
+            </span>
+
+        <?php endif; ?>
+
+        <!-- PAGE INFO -->
+
+        <span class="pagination-info">
+
+            Page <?php echo $page; ?>
+            of <?php echo $total_pages; ?>
+
+        </span>
+
+        <!-- NEXT -->
+
+        <?php if($page < $total_pages): ?>
+
+            <a
+            href="?page=<?php echo $page + 1; ?>"
+            class="pagination-btn pagination-next">
+
+                Next →
+
+            </a>
+
+        <?php else: ?>
+
+            <span class="pagination-btn disabled">
+                Next →
+            </span>
+
+        <?php endif; ?>
+
+    </div>
 </div>
 
 <?php include __DIR__ . '/../../includes/footer.php'; ?>
