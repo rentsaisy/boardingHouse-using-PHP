@@ -50,7 +50,7 @@ ceil($total_rows / $limit);
 $result = $conn->query("
     SELECT *
     FROM m_room
-    ORDER BY room_id DESC
+    ORDER BY room_id ASC
     LIMIT $start, $limit
 ");
 ?>
